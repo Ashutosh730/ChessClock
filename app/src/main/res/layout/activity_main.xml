@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:layout_weight="1"
+        android:rotationX="180"
+        android:rotationY="180">
+
+        <Chronometer
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#394867"
+            android:id="@+id/player1"
+            android:textSize="108sp"
+            android:gravity="center"
+            android:countDown="true">
+        </Chronometer>
+        <TextView
+            android:id="@+id/counter1"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:text="0"
+            android:layout_gravity="top"
+            android:textSize="32sp"
+            android:gravity="center"/>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1.3">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="48dp"
+            android:src="@drawable/settings_image"
+            android:id="@+id/settings"
+            android:layout_weight="1"
+            />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/pause_image"
+            android:id="@+id/pause"
+            android:layout_margin="24dp"
+            android:layout_weight="1"
+            />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/replay_image"
+            android:id="@+id/replay"
+            android:layout_margin="48dp"
+            android:layout_weight="1"
+            />
+
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:layout_weight="1">
+        <Chronometer
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/player2"
+            android:background="#394867"
+            android:textSize="108sp"
+            android:countDown="true"
+            android:gravity="center"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/counter2"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:text="0"
+            android:textSize="32sp"
+            android:layout_gravity="top"
+            android:gravity="center"/>
+    </FrameLayout>
+</LinearLayout>
+
+
+<!--    player1.setOnClickListener(new View.OnClickListener() {-->
+<!--    @Override-->
+<!--    public void onClick(View v) {-->
+
+<!--    //counting number of taps and setting it to the txtcounter TextView...-->
+<!--    counter1++;-->
+<!--    txtcounter1.setText(counter1+"");-->
+
+<!--    //This if else is for differentiating between the first and other clicks...-->
+<!--    player2.setBase(SystemClock.elapsedRealtime()-pauseOffSet2+addTime2);-->
+<!--    addTime2=additionalTime;-->
+
+<!--    //Here we are starting the player2 timer and stop the timer of current player-->
+<!--    player2.start();-->
+<!--    player1.stop();-->
+
+<!--    //pauseOffSet is the determine the difference between two consecutive taps...-->
+<!--    pauseOffSet1=SystemClock.elapsedRealtime()-player1.getBase();-->
+
+<!--    //This if is for differentiating between the first and other clicks-->
+<!--    //here we are considering the clicks other then first one...-->
+<!--    if(!flag)-->
+<!--    player1.setBase(SystemClock.elapsedRealtime()-pauseOffSet1+addTime1);-->
+<!--    flag=false;-->
+
+<!--    //Disabling current view and enabling other view...-->
+<!--    player1.setEnabled(false);-->
+<!--    player2.setEnabled(true);-->
+
+<!--    //Recording who is playing now...-->
+<!--    currentPlayer=1;-->
+<!--    }-->
+<!--    });-->
+
+<!--    player2.setOnClickListener(new View.OnClickListener() {-->
+<!--    @Override-->
+<!--    public void onClick(View v) {-->
+
+<!--    //counting number of taps and setting it to the txtcounter TextView...-->
+<!--    counter2++;-->
+<!--    txtcounter2.setText(counter2+"");-->
+
+<!--    //This if else is for differentiating between the first and other clicks...-->
+<!--    player1.setBase(SystemClock.elapsedRealtime()-pauseOffSet1+addTime1);-->
+<!--    addTime1=additionalTime;-->
+
+<!--    //Here we are starting the player2 timer and stop the timer of current player-->
+<!--    player1.start();-->
+<!--    player2.stop();-->
+
+<!--    //pauseOffSet is the determine the difference between two consecutive taps...-->
+<!--    pauseOffSet2=SystemClock.elapsedRealtime()-player2.getBase();-->
+
+<!--    //This if is for differentiating between the first and other clicks...-->
+<!--    //here we are considering the clicks other then first one-->
+<!--    if(!flag)-->
+<!--    player2.setBase(SystemClock.elapsedRealtime()-pauseOffSet2+addTime2);-->
+<!--    flag=false;-->
+
+<!--    //Disabling current view and enabling other view-->
+<!--    player2.setEnabled(false);-->
+<!--    player1.setEnabled(true);-->
+
+<!--    //Recording who is playing now...-->
+<!--    currentPlayer=2;-->
+<!--    }-->
+<!--    });-->
