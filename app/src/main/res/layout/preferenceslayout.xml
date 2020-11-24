@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="text view"
+            android:layout_gravity="start"
+            android:textSize="20sp"
+            android:layout_margin="8dp"/>
+        <CheckBox
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_margin="8dp"
+            android:id="@+id/checkbox"
+            android:layout_alignRight="@+id/title"
+            android:layout_gravity="end"
+            android:layout_alignEnd="@+id/title" />
+
+</FrameLayout>

@@ -1,5 +1,6 @@
 package com.example.chessclock;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -164,5 +165,17 @@ public class MainActivity extends AppCompatActivity{
                 flag=true;
             }
         });
+
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getBaseContext(),SettingsActivity.class));
+            }
+        });
     }
 }
+//
+//    Hello connections...
+//        This is my first post.
+//        I have made this app which can be use while playing Chess... By using this app players can set timer for their chess game play...
+//        For now this app has one default timer which is Blitz(2-3) timer... In future I have decided to add some more timer and a feature of setting own customizable timer so that player can set their own timer according to their own preferences... I hope like it... #android #gaming #selfmade #Chess #ChessClock
