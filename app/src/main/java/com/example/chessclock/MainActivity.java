@@ -1,6 +1,7 @@
 package com.example.chessclock;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -27,6 +28,12 @@ public class MainActivity extends AppCompatActivity{
     private  int counter1=0,counter2=0,currentPlayer=0;
     private TextView txtcounter1,txtcounter2;
 
+    private SharedPreferences sharedPreferences;
+    private static String MINUTE="minute";
+    private static String SECOND="second";
+    private static String SHARED_PREF_NAME="name";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,11 +47,13 @@ public class MainActivity extends AppCompatActivity{
         txtcounter1=findViewById(R.id.counter1);
         txtcounter2=findViewById(R.id.counter2);
 
-        varTime=3;
+        sharedPreferences=getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
+        varTime=sharedPreferences.getInt(MINUTE,5);
+        additionalTime=1000*sharedPreferences.getInt(SECOND,5);
+
         addTime1=0;
         addTime2=0;
-        additionalTime=1000*2;
-        baseTime=60*1005*varTime;
+        baseTime=60*1000*varTime;
 
         player1.setBase(SystemClock.elapsedRealtime()+baseTime);
         player2.setBase(SystemClock.elapsedRealtime()+baseTime);
