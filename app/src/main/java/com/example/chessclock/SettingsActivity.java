@@ -10,13 +10,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -24,7 +21,8 @@ public class SettingsActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private PreferrencesAdapter adapter;
     private Button start;
-    private int varTime,additionalTime;
+    private int varTime=5,additionalTime=5;
+    private TextView name,minute,second;
 
     private static String MINUTE="minute";
     private static String SECOND="second";
@@ -42,17 +40,19 @@ public class SettingsActivity extends AppCompatActivity {
         arrayList.add("Fischer Rapid(10|5)");
         arrayList.add("Delay Bullet(1|2)");
 
-        start=findViewById(R.id.start);
+        name=findViewById(R.id.name_display);
+        minute=findViewById(R.id.minute_display);
+        second=findViewById(R.id.second_display);
+        start=findViewById(R.id.btn_start);
         recyclerView=findViewById(R.id.recyclerView);
         LinearLayoutManager linearLayout=new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayout);
-        adapter=new PreferrencesAdapter(arrayList,this,start);
+        adapter=new PreferrencesAdapter(arrayList,this);
         recyclerView.setAdapter(adapter);
 
         adapter.setOnItemClickListener(new PreferrencesAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
-                Toast.makeText(SettingsActivity.this,position+"", Toast.LENGTH_SHORT).show();
 
                 switch (position){
                     case 0: varTime=3;
@@ -70,11 +70,11 @@ public class SettingsActivity extends AppCompatActivity {
                         additionalTime=2;
                         break;
 
-                    default:
-                        varTime=3;
-                        additionalTime=2;
-                        break;
                 }
+
+                name.setText(arrayList.get(position)+"");
+                minute.setText("Minute:"+varTime+"");
+                second.setText("Second:"+additionalTime+"");
             }
         });
 
@@ -83,18 +83,16 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Context context=getBaseContext();
                 Intent intent = new Intent(context, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
                 SharedPreferences sharedPreferences1 = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
 
-                //Creating editor to store values to shared preferences
+                //Creating editor to store values to shared preferences...
                 SharedPreferences.Editor editor = sharedPreferences1.edit();
 
-                //Adding values to editor
+                //Adding values to editor...
                 editor.putInt(MINUTE, varTime);
                 editor.putInt(SECOND, additionalTime);
-                editor.apply();
-
+                editor.commit();
                 context.startActivity(intent);
             }
         });

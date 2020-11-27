@@ -1,5 +1,6 @@
 package com.example.chessclock;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.view.MenuItem;
 import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -32,7 +34,6 @@ public class MainActivity extends AppCompatActivity{
     private static String MINUTE="minute";
     private static String SECOND="second";
     private static String SHARED_PREF_NAME="name";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity{
 
         sharedPreferences=getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         varTime=sharedPreferences.getInt(MINUTE,5);
-        additionalTime=1000*sharedPreferences.getInt(SECOND,5);
+        additionalTime=sharedPreferences.getInt(SECOND,5);
 
         addTime1=0;
         addTime2=0;
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
 
-                //counting number of taps and setting it to the txtcounter TextView...
+                //counting number of taps and setting it to the txtCounter TextView...
                 counter1++;
                 txtcounter1.setText(counter1+"");
 
@@ -95,7 +96,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
 
-                //counting number of taps and setting it to the txtcounter TextView...
+                //counting number of taps and setting it to the txtCounter TextView...
                 counter2++;
                 txtcounter2.setText(counter2+"");
 
@@ -183,7 +184,7 @@ public class MainActivity extends AppCompatActivity{
         });
     }
 }
-//
+
 //    Hello connections...
 //        This is my first post.
 //        I have made this app which can be use while playing Chess... By using this app players can set timer for their chess game play...
