@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/brownish_red"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -17,7 +19,7 @@
         <Chronometer
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#394867"
+            android:background="@color/yellow"
             android:id="@+id/player1"
             android:textSize="108sp"
             android:gravity="center"
@@ -76,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/player2"
-            android:background="#394867"
+            android:background="@color/yellow"
             android:textSize="108sp"
             android:countDown="true"
             android:gravity="center"

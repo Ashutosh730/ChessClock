@@ -30,9 +30,13 @@ public class MainActivity extends AppCompatActivity{
     private  int counter1=0,counter2=0,currentPlayer=0;
     private TextView txtcounter1,txtcounter2;
 
+//    private TextView name,minute,second;
+
+
     private SharedPreferences sharedPreferences;
     private static String MINUTE="minute";
     private static String SECOND="second";
+    private static String TIMER_NAME="timer";
     private static String SHARED_PREF_NAME="name";
 
     @Override
@@ -48,9 +52,17 @@ public class MainActivity extends AppCompatActivity{
         txtcounter1=findViewById(R.id.counter1);
         txtcounter2=findViewById(R.id.counter2);
 
+//        name=findViewById(R.id.name_display);
+//        minute=findViewById(R.id.minute_display);
+//        second=findViewById(R.id.second_display);
+
         sharedPreferences=getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         varTime=sharedPreferences.getInt(MINUTE,5);
-        additionalTime=sharedPreferences.getInt(SECOND,5);
+        additionalTime=1000*sharedPreferences.getInt(SECOND,5);
+
+//        name.setText(sharedPreferences.getString(TIMER_NAME,"Default"));
+//        minute.setText(varTime+"");
+//        second.setText(additionalTime/1000+"");
 
         addTime1=0;
         addTime2=0;

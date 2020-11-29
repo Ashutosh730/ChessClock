@@ -26,11 +26,11 @@ public class PreferrencesAdapter extends RecyclerView.Adapter<PreferrencesAdapte
     }
 
 
-    private ArrayList arrayList;
+    private ArrayList<CustomTimerData> arrayList;
     private Context context;
 
 
-    public PreferrencesAdapter(ArrayList arrayList, Context context){
+    public PreferrencesAdapter(ArrayList<CustomTimerData> arrayList, Context context){
 
         this.arrayList = arrayList;
         this.context = context;
@@ -47,7 +47,8 @@ public class PreferrencesAdapter extends RecyclerView.Adapter<PreferrencesAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.textView.setText(arrayList.get(position)+"");
+
+        holder.textView.setText(arrayList.get(position).getTitle()+"");
     }
 
     @Override
