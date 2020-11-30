@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 
 public class MyDBHelper extends SQLiteOpenHelper {
 
-    private Context context;
+    private final Context context;
     private static final String DATABASE_NAME="TimerLibrary.db";
     private static final int DATABASE_VERSION=1;
     private static final String TABLE_NAME="timer";
@@ -96,5 +96,14 @@ public class MyDBHelper extends SQLiteOpenHelper {
             cursor=db.rawQuery(query,null);
         }
         return cursor;
+    }
+
+    public void deleteTimer(String row_id){
+        SQLiteDatabase db =this.getWritableDatabase();
+        long result=db.delete(TABLE_NAME," id=?",new String[]{row_id});
+        if(result!=-1)
+            Toast.makeText(context, "Error...Try Again", Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(context, "Deleted Successfully", Toast.LENGTH_SHORT).show();
     }
 }

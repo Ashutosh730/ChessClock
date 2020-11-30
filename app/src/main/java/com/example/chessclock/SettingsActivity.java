@@ -1,10 +1,12 @@
 package com.example.chessclock;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -13,7 +15,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -23,7 +27,8 @@ public class SettingsActivity extends AppCompatActivity implements Custom_Time_D
     private RecyclerView recyclerView;
     private PreferrencesAdapter adapter;
     private Button start;
-    private int varTime=5,additionalTime=5;
+    private ImageView delete;
+    private int varTime=5,additionalTime=5,adapterPosition;
     private TextView name,minute,second;
 
     private static String MINUTE="minute";
@@ -46,21 +51,25 @@ public class SettingsActivity extends AppCompatActivity implements Custom_Time_D
         start=findViewById(R.id.btn_start);
         recyclerView=findViewById(R.id.recyclerView);
 
-        dbHelper=new MyDBHelper(this);
+        dbHelper=new MyDBHelper(SettingsActivity.this);
 
         arrayList= new ArrayList<>();
         storeDataInArray();
 
         LinearLayoutManager linearLayout=new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayout);
-        adapter=new PreferrencesAdapter(arrayList,this);
+        adapter=new PreferrencesAdapter(arrayList,SettingsActivity.this);
         recyclerView.setAdapter(adapter);
 
         sharedPreferences1 = getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
 
         adapter.setOnItemClickListener(new PreferrencesAdapter.OnItemClickListener() {
+
             @Override
             public void onItemClick(View v, int position) {
+
+                delete=v.findViewById(R.id.delete);
+                adapterPosition=position;
 
                 switch (position){
                     case 0: varTime=3;
@@ -89,9 +98,16 @@ public class SettingsActivity extends AppCompatActivity implements Custom_Time_D
                 name.setText(arrayList.get(position).getTitle()+"");
                 minute.setText("Minute:"+varTime+"");
                 second.setText("Second:"+additionalTime+"");
+
             }
         });
 
+//        delete.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                confirmDialog(adapterPosition);
+//            }
+//        });
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,6 +130,8 @@ public class SettingsActivity extends AppCompatActivity implements Custom_Time_D
         name.setText(sharedPreferences1.getString(TIMER_NAME,"default"));
         minute.setText("Minute:"+sharedPreferences1.getInt(MINUTE,5));
         second.setText("Second:"+sharedPreferences1.getInt(SECOND,5)+"");
+
+        Toast.makeText(this, arrayList.size()+"", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -144,6 +162,8 @@ public class SettingsActivity extends AppCompatActivity implements Custom_Time_D
     public void applyTexts(String custom_title, int custom_minute, int custom_second) {
         String string=custom_title+"("+custom_minute+"|"+custom_second+")";
         dbHelper.addTimer(string,custom_minute,custom_second);
+        adapter.notifyItemInserted(arrayList.size());
+
     }
 
     public void storeDataInArray(){
@@ -156,4 +176,5 @@ public class SettingsActivity extends AppCompatActivity implements Custom_Time_D
             }
         }
     }
+
 }
