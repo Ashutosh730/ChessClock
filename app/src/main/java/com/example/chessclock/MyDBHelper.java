@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Build;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -101,9 +100,9 @@ public class MyDBHelper extends SQLiteOpenHelper {
     public void deleteTimer(String row_id){
         SQLiteDatabase db =this.getWritableDatabase();
         long result=db.delete(TABLE_NAME," id=?",new String[]{row_id});
-        if(result!=-1)
-            Toast.makeText(context, "Error...Try Again", Toast.LENGTH_SHORT).show();
-        else
-            Toast.makeText(context, "Deleted Successfully", Toast.LENGTH_SHORT).show();
+//        if(result!=-1)
+//            Toast.makeText(context, "Error...Try Again", Toast.LENGTH_SHORT).show();
+//        else
+//            Toast.makeText(context, "Deleted Successfully", Toast.LENGTH_SHORT).show();
     }
 }

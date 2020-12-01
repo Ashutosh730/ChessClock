@@ -5,11 +5,8 @@ import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -96,7 +93,6 @@ public class PreferrencesAdapter extends RecyclerView.Adapter<PreferrencesAdapte
 
         }
         public void confirmDialog(int position){
-            Toast.makeText(context, position+"", Toast.LENGTH_SHORT).show();
 
             AlertDialog.Builder builder=new AlertDialog.Builder(context);
             builder.setTitle("Delete Timer "+arrayList.get(position).getTitle()+" ?");
@@ -105,7 +101,8 @@ public class PreferrencesAdapter extends RecyclerView.Adapter<PreferrencesAdapte
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dbHelper.deleteTimer(arrayList.get(position).getId()+"");
-
+                    arrayList.remove(position);
+                    notifyItemRemoved(position);
                 }
             });
             builder.setNegativeButton("No", new DialogInterface.OnClickListener() {

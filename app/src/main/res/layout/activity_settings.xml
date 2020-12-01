@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/yellow"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".SettingsActivity">
 
@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#F1AF4E"
+        android:background="#f4ca8b"
         android:layout_margin="16dp">
 
         <TextView
@@ -52,7 +52,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#F1AF4E"
+        android:background="#f4ca8b"
         android:layout_margin="8dp"
         />
 
@@ -64,6 +64,7 @@
         android:background="@color/brownish_red"
         android:text="Start"
         android:textSize="20sp"
+        android:textColor="@color/white"
         app:backgroundTint="@color/brownish_red" />
 
 </LinearLayout>
